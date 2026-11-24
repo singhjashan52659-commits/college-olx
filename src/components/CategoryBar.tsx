@@ -34,21 +34,23 @@ export const CategoryBar: React.FC = () => {
   const { selectedCategory, setSelectedCategory } = useMarketplace();
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-2.5 overflow-x-auto transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1.5 min-w-max">
+    <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 py-2 sm:py-2.5 overflow-x-auto no-scrollbar transition-colors">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center gap-1.5 sm:gap-2 min-w-max">
         {CATEGORIES_LIST.map((cat) => {
           const isActive = selectedCategory === cat.name;
           return (
             <button
               key={cat.name}
               onClick={() => setSelectedCategory(cat.name)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all active:scale-95 ${
                 isActive
-                  ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
-                  : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-700/80'
+                  ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              {cat.icon}
+              <span className={isActive ? 'text-blue-400 dark:text-blue-600' : 'text-slate-400 dark:text-slate-500'}>
+                {cat.icon}
+              </span>
               <span>{cat.name}</span>
             </button>
           );
